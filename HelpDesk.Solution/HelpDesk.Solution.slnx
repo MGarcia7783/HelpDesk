@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="HelpDesk.Bll/HelpDesk.Bll.csproj" />
+  <Project Path="HelpDesk.Dal/HelpDesk.Dal.csproj" />
+  <Project Path="HelpDesk.UI/HelpDesk.UI.csproj" />
+  <Project Path="HelpHesk.Entities/HelpHesk.Entities.csproj" />
+</Solution>
