@@ -222,6 +222,7 @@
             btnDashboard.TextAlign = ContentAlignment.MiddleRight;
             btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // panel1
             // 

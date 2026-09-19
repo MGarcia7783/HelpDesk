@@ -27,12 +27,6 @@
           <AssociatedConnUserName />
           <FullPath>Base de Datos.sql</FullPath>
         </FileNode>
-        <FileNode Name="Catálogo de Códigos.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:MGarcia:True</AssociatedConnectionMoniker>
-          <AssociatedConnSrvName>MGarcia</AssociatedConnSrvName>
-          <AssociatedConnUserName />
-          <FullPath>Catálogo de Códigos.sql</FullPath>
-        </FileNode>
         <FileNode Name="Crud de Categorias.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:MGarcia:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>MGarcia</AssociatedConnSrvName>

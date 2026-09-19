@@ -1,4 +1,5 @@
-﻿using HelpDesk.UI.Helpers;
+﻿using HelpDesk.UI.Formularios.Base;
+using HelpDesk.UI.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,8 +48,13 @@ namespace HelpDesk.UI.Formularios
 
             DialogResult respuesta = MessageBox.Show("¿Seguro que desea salir del sistema?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if(respuesta == DialogResult.No)
+            if (respuesta == DialogResult.No)
                 e.Cancel = true;
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmBaseListado(), panelContenedor, ref formularioActivo, btnDashboard);
         }
     }
 }
