@@ -24,9 +24,9 @@ namespace HelpDesk.UI.Helpers
             if (respuesta != DialogResult.Yes)
                 return false;
 
-           /* if (formularioActual is FrmPrincipal principal)
+           if (formularioActual is FrmPrincipal principal)
                 principal.CerrarSesion();
-            else if (formularioActual is FrmPanelUsuario panel)
+            /*else if (formularioActual is FrmPanelUsuario panel)
                 panel.CerrarSesion();*/
             else
                 formularioActual.Close();
