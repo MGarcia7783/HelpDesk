@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HelpHesk.Entities\HelpHesk.Entities.csproj" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
+    <ProjectReference Include="..\HelpHesk.Entities\HelpHesk.Entities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -11,8 +11,4 @@
     <ProjectReference Include="..\HelpHesk.Entities\HelpHesk.Entities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-
 </Project>
