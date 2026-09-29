@@ -186,5 +186,58 @@ namespace HelpDesk.UI.Formularios.Base
 
             await MostrarDatosAsync(PaginaActual, TamPagina, txtBuscar.Text);
         }
+
+        private async void buttonAgregar_Click(object sender, EventArgs e)
+        {
+            Form? frm = CrearFormularioAccionPrincipal();
+
+            if (frm == null)
+                return;
+
+            Form frmPrincipal = this.FindForm()!;
+
+            using (FrmOverlay overlay = new FrmOverlay(frmPrincipal))
+            {
+                overlay.Show();
+
+                // Colocar el overlay encima del principal
+                overlay.BringToFront();
+
+                // Centrar el modal respecto al principal
+                frm.StartPosition = FormStartPosition.CenterParent;
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await MostrarDatosAsync(PaginaActual, TamPagina, txtBuscar.Text);
+            }
+        }
+
+        private async void buttonEditar_Click(object sender, EventArgs e)
+        {
+            int? id = ObtenerIdSeleccionado();
+
+            if (id is null)
+            {
+                MessageBox.Show("Debe seleccionar un registro.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Form? frm = CrearFormularioAccionSecundaria(id.Value);
+
+            if (frm == null)
+                return;
+
+            using (FrmOverlay overlay = new FrmOverlay(this.FindForm()!))
+            {
+                overlay.Show();
+
+                if (frm.ShowDialog() == DialogResult.OK)
+                    await MostrarDatosAsync(PaginaActual, TamPagina, txtBuscar.Text);
+            }
+        }
+
+        private async void buttonDesactivar_Click(object sender, EventArgs e)
+        {
+            await DesactivarAsync();
+        }
     }
 }

@@ -150,6 +150,7 @@
             btnRol.TextAlign = ContentAlignment.MiddleRight;
             btnRol.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRol.UseVisualStyleBackColor = true;
+            btnRol.Click += btnRol_Click;
             // 
             // btnTicket
             // 

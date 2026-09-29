@@ -260,6 +260,7 @@
             buttonEditar.Text = "Editar";
             buttonEditar.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonEditar.UseVisualStyleBackColor = false;
+            buttonEditar.Click += buttonEditar_Click;
             // 
             // buttonDesactivar
             // 
@@ -277,6 +278,7 @@
             buttonDesactivar.Text = "Estado";
             buttonDesactivar.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonDesactivar.UseVisualStyleBackColor = false;
+            buttonDesactivar.Click += buttonDesactivar_Click;
             // 
             // buttonAgregar
             // 
@@ -296,6 +298,7 @@
             buttonAgregar.Text = "Nuevo";
             buttonAgregar.TextImageRelation = TextImageRelation.ImageBeforeText;
             buttonAgregar.UseVisualStyleBackColor = false;
+            buttonAgregar.Click += buttonAgregar_Click;
             // 
             // panelBuscar
             // 

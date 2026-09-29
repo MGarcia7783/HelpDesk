@@ -1,4 +1,5 @@
 ﻿using HelpDesk.UI.Formularios.Base;
+using HelpDesk.UI.Formularios.Hijos.Roles;
 using HelpDesk.UI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,12 @@ namespace HelpDesk.UI.Formularios
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            NavegacionHelper.AbrirFormulario(new FrmBaseListado(), panelContenedor, ref formularioActivo, btnDashboard);
+            
+        }
+
+        private void btnRol_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmRolesListado(), panelContenedor, ref formularioActivo, btnRol);
         }
     }
 }
