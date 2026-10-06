@@ -9,7 +9,7 @@ namespace HelpHesk.Entities.Entidades
         public int Id { get; private set; }
         public string NombreCompleto { get; private set; } = string.Empty;
         public string NombreUsuario { get; private set; } = string.Empty;
-        public string CorreElectronico { get; private set; } = string.Empty;
+        public string CorreoElectronico { get; private set; } = string.Empty;
         public int IdRol { get; private set; }
         public string NombreRol { get; private set; } = string.Empty;
         public bool Activo { get; private set; } = false;
@@ -58,7 +58,7 @@ namespace HelpHesk.Entities.Entidades
             if (string.IsNullOrWhiteSpace(correo))
                 throw new Exception("Debe especificar el correo electrónico.");
 
-            CorreElectronico = correo.Trim();
+            CorreoElectronico = correo.Trim();
         }
 
         public void CambiarRol(int idRol)
