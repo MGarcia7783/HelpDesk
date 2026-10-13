@@ -1,4 +1,5 @@
 ﻿using HelpDesk.UI.Formularios.Base;
+using HelpDesk.UI.Formularios.Hijos.Categorias;
 using HelpDesk.UI.Formularios.Hijos.Roles;
 using HelpDesk.UI.Formularios.Hijos.Usuarios;
 using HelpDesk.UI.Helpers;
@@ -67,6 +68,11 @@ namespace HelpDesk.UI.Formularios
         private void btnUsuario_Click(object sender, EventArgs e)
         {
             NavegacionHelper.AbrirFormulario(new FrmUsuariosListado(), panelContenedor, ref formularioActivo, btnUsuario);
+        }
+
+        private void btnCategoria_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmCategoriasListado(), panelContenedor, ref formularioActivo, btnCategoria);
         }
     }
 }

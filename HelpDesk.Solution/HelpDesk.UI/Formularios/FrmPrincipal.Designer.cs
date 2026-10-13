@@ -200,6 +200,7 @@
             btnCategoria.TextAlign = ContentAlignment.MiddleRight;
             btnCategoria.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnCategoria.UseVisualStyleBackColor = true;
+            btnCategoria.Click += btnCategoria_Click;
             // 
             // btnDashboard
             // 
