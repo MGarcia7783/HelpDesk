@@ -327,6 +327,7 @@
             Text = "Sistema Administrativo";
             WindowState = FormWindowState.Maximized;
             FormClosing += FrmPrincipal_FormClosing;
+            Load += FrmPrincipal_Load;
             sidebar.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);

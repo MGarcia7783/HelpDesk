@@ -17,6 +17,7 @@ namespace HelpDesk.UI.Formularios.Hijos.Usuarios
         private readonly UsuarioBll _usuarioBll;
         private readonly RolBll _rolBll;
         private readonly int? _idUsuario;
+        private readonly bool _esAutoregistro;
 
         private UsuarioEntity? _usuario;
 
@@ -49,6 +50,20 @@ namespace HelpDesk.UI.Formularios.Hijos.Usuarios
 
             lblTitulo.Text = "Editar Usuario";
             lblDescripcion.Text = "Complete la información del usuario.";
+        }
+
+        // Constructor para auto registro desde el login
+        public FrmUsuariosRegistro(UsuarioBll usuarioBll, RolBll rolBll, bool esAutoregistro)
+        {
+            InitializeComponent();
+
+            _usuarioBll = usuarioBll;
+            _rolBll = rolBll;
+
+            _esAutoregistro = esAutoregistro;
+
+            lblTitulo.Text = "Crear cuenta";
+            lblDescripcion.Text = "Complete la información para crear su cuenta.";
         }
 
         #endregion
@@ -115,6 +130,12 @@ namespace HelpDesk.UI.Formularios.Hijos.Usuarios
             if (!ValidationHelper.EmailValido(txtCorreo, errorIcon))
                 valido = false;
 
+            if(!_esAutoregistro)
+            {
+                if (!ValidationHelper.Requerido(cboRoles, errorIcon, "Seleccione un rol"))
+                valido = false;
+            }
+
             if (!EsEdicion)
             {
                 if (!ValidationHelper.Requerido(txtContra, errorIcon, "Ingrese la contraseña."))
@@ -138,6 +159,25 @@ namespace HelpDesk.UI.Formularios.Hijos.Usuarios
         {
             await CargarRolesAsync();
 
+            if(_esAutoregistro)
+            {
+                // Buscar el rol
+                foreach(RolEntity rol in cboRoles.Items)
+                {
+                    if(rol.NombreRol.Equals("Usuario", StringComparison.OrdinalIgnoreCase))
+                    {
+                        cboRoles.SelectedValue = rol.Id;
+                        break;
+                    }
+                }
+            }
+            label3.Visible = false;
+            panelRol.Visible = false;
+            cboRoles.Visible = false;
+
+            label5.Location = new Point(21, 268);
+            panelContra.Location = new Point(173, 268);
+
             if (EsEdicion)
                 await CargarDatosAsync();
         }
@@ -149,7 +189,9 @@ namespace HelpDesk.UI.Formularios.Hijos.Usuarios
 
             try
             {
-                string usuarioApp = UsuarioSesion.NombreUsuario;
+                string usuarioApp = _esAutoregistro
+                                    ? "Autoregistro"
+                                    : UsuarioSesion.NombreUsuario;
 
                 if (!EsEdicion)
                 {

@@ -2,6 +2,7 @@
 using HelpDesk.UI.Formularios.Hijos.Categorias;
 using HelpDesk.UI.Formularios.Hijos.Roles;
 using HelpDesk.UI.Formularios.Hijos.Usuarios;
+using HelpDesk.UI.Formularios.Tickets;
 using HelpDesk.UI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -26,10 +27,31 @@ namespace HelpDesk.UI.Formularios
 
         #region Sidebar
 
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmDashboard(), panelContenedor, ref formularioActivo, btnDashboard);
+        }
+
+        private void btnRol_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmRolesListado(), panelContenedor, ref formularioActivo, btnRol);
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmUsuariosListado(), panelContenedor, ref formularioActivo, btnUsuario);
+        }
+
+        private void btnCategoria_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmCategoriasListado(), panelContenedor, ref formularioActivo, btnCategoria);
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             SesionHelper.CerrarSesion(this);
         }
+
 
         #endregion
 
@@ -55,24 +77,10 @@ namespace HelpDesk.UI.Formularios
                 e.Cancel = true;
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
+        private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnRol_Click(object sender, EventArgs e)
-        {
-            NavegacionHelper.AbrirFormulario(new FrmRolesListado(), panelContenedor, ref formularioActivo, btnRol);
-        }
-
-        private void btnUsuario_Click(object sender, EventArgs e)
-        {
-            NavegacionHelper.AbrirFormulario(new FrmUsuariosListado(), panelContenedor, ref formularioActivo, btnUsuario);
-        }
-
-        private void btnCategoria_Click(object sender, EventArgs e)
-        {
-            NavegacionHelper.AbrirFormulario(new FrmCategoriasListado(), panelContenedor, ref formularioActivo, btnCategoria);
+            SesionHelper.CargarDatosSesion(toolUsuario, toolRol);
+            NavegacionHelper.AbrirFormulario(new FrmDashboard(), panelContenedor, ref formularioActivo, btnDashboard);
         }
     }
 }

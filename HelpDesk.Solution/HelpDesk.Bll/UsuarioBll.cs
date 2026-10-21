@@ -39,5 +39,10 @@ namespace HelpDesk.Bll
         {
             await _usuarioDal.CambiarEstadoAsync(id, activo, usuarioApp);
         }
+
+        public async Task<UsuarioEntity> AutenticarAsync(string nombreUsuario, string claveUsuario)
+        {
+            return await _usuarioDal.AutenticarAsync(nombreUsuario, claveUsuario);
+        }
     }
 }

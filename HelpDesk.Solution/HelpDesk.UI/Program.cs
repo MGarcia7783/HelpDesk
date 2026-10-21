@@ -58,7 +58,7 @@ namespace HelpDesk.UI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            Application.Run(new FrmPrincipal());
+            Application.Run(new FrmInicioSesion());
         }
     }
 }
