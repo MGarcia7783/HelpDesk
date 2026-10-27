@@ -26,8 +26,8 @@ namespace HelpDesk.UI.Helpers
 
            if (formularioActual is FrmPrincipal principal)
                 principal.CerrarSesion();
-            /*else if (formularioActual is FrmPanelUsuario panel)
-                panel.CerrarSesion();*/
+            else if (formularioActual is FrmPanelUsuario panel)
+                panel.CerrarSesion();
             else
                 formularioActual.Close();
 

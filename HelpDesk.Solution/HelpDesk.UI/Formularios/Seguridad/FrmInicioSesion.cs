@@ -102,7 +102,19 @@ namespace HelpDesk.UI.Formularios.Seguridad
                 else
                 {
                     // Funcionalidad para iniciar como usuario del sistema
-                    MessageBox.Show("Bienvenido usuario del sistema");
+                    using FrmPanelUsuario frm = new FrmPanelUsuario();
+                    DialogResult resultado = frm.ShowDialog();
+
+                    if (resultado == DialogResult.Retry)
+                    {
+                        txtClave.Clear();
+                        txtClave.Focus();
+                        Show();
+                    }
+                    else
+                    {
+                        Close();
+                    }
                 }
             }
             catch (Exception ex)
