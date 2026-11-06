@@ -1,4 +1,5 @@
 ﻿using HelpDesk.Dal;
+using HelpHesk.Entities.Dto;
 using HelpHesk.Entities.Entidades;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace HelpDesk.Bll
         public async Task<string> AgregarAsync(TicketEntity ticket, string usuarioApp)
         {
             return await _ticketDal.AgregarAsync(ticket, usuarioApp);
+        }
+
+        public async Task<DashboardAdminDto> ObtenerDashboardAdminAsync()
+        {
+            return await _ticketDal.ObtenerDashboardAdminAsync();
         }
     }
 }

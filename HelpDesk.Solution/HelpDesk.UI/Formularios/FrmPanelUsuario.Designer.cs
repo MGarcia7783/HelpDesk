@@ -36,10 +36,10 @@
             label2 = new Label();
             label1 = new Label();
             iconAdmin = new FontAwesome.Sharp.IconPictureBox();
+            panelContenedor = new Panel();
             statusStrip1 = new StatusStrip();
             toolUsuario = new ToolStripStatusLabel();
             toolRol = new ToolStripStatusLabel();
-            panelContenedor = new Panel();
             sidebar.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
@@ -56,7 +56,7 @@
             sidebar.Dock = DockStyle.Left;
             sidebar.Location = new Point(0, 0);
             sidebar.Name = "sidebar";
-            sidebar.Size = new Size(202, 641);
+            sidebar.Size = new Size(202, 681);
             sidebar.TabIndex = 3;
             // 
             // panel2
@@ -64,7 +64,7 @@
             panel2.BorderStyle = BorderStyle.FixedSingle;
             panel2.Controls.Add(btnSalir);
             panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 557);
+            panel2.Location = new Point(0, 597);
             panel2.Name = "panel2";
             panel2.Size = new Size(202, 84);
             panel2.TabIndex = 6;
@@ -167,15 +167,24 @@
             iconAdmin.TabIndex = 0;
             iconAdmin.TabStop = false;
             // 
+            // panelContenedor
+            // 
+            panelContenedor.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            panelContenedor.BackColor = Color.White;
+            panelContenedor.Location = new Point(202, 0);
+            panelContenedor.Name = "panelContenedor";
+            panelContenedor.Size = new Size(1062, 638);
+            panelContenedor.TabIndex = 5;
+            // 
             // statusStrip1
             // 
             statusStrip1.AutoSize = false;
             statusStrip1.BackColor = Color.FromArgb(229, 231, 235);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolUsuario, toolRol });
-            statusStrip1.Location = new Point(0, 641);
+            statusStrip1.Location = new Point(202, 641);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1264, 40);
-            statusStrip1.TabIndex = 4;
+            statusStrip1.Size = new Size(1062, 40);
+            statusStrip1.TabIndex = 6;
             statusStrip1.Text = "statusStrip1";
             // 
             // toolUsuario
@@ -196,22 +205,13 @@
             toolRol.Size = new Size(50, 35);
             toolRol.Text = "Rol:";
             // 
-            // panelContenedor
-            // 
-            panelContenedor.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            panelContenedor.BackColor = Color.White;
-            panelContenedor.Location = new Point(202, 0);
-            panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new Size(1062, 638);
-            panelContenedor.TabIndex = 5;
-            // 
             // FrmPanelUsuario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1264, 681);
-            Controls.Add(sidebar);
             Controls.Add(statusStrip1);
+            Controls.Add(sidebar);
             Controls.Add(panelContenedor);
             MinimumSize = new Size(1280, 720);
             Name = "FrmPanelUsuario";
@@ -240,9 +240,9 @@
         private Label label2;
         private Label label1;
         private FontAwesome.Sharp.IconPictureBox iconAdmin;
+        private Panel panelContenedor;
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolUsuario;
         private ToolStripStatusLabel toolRol;
-        private Panel panelContenedor;
     }
 }

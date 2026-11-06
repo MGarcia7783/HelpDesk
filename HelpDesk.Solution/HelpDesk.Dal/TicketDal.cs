@@ -1,4 +1,5 @@
 ﻿using HelpDesk.Dal.Common;
+using HelpHesk.Entities.Dto;
 using HelpHesk.Entities.Entidades;
 using Microsoft.Data.SqlClient;
 using System;
@@ -89,6 +90,81 @@ namespace HelpDesk.Dal
 
                 await cn.OpenAsync();
                 return Convert.ToString(await cmd.ExecuteScalarAsync())!;
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorHelper.TraducirError(ex);
+            }
+        }
+
+        public async Task<DashboardAdminDto> ObtenerDashboardAdminAsync()
+        {
+            try
+            {
+                DashboardAdminDto dashboard = new();
+
+                using SqlConnection cn = Conexion.ObtenerConexion();
+                using SqlCommand cmd = new("sp_DashboardAdmin", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                await cn.OpenAsync();
+                
+                using SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                // Tickets por estado
+                while(await dr.ReadAsync())
+                {
+                    dashboard.TicketsPorEstado.Add(new DashboardEstadoDto
+                    {
+                        Estado = dr["estado"].ToString()!,
+                        Total = Convert.ToInt32(dr["total"])
+                    });
+                }
+
+                // Tickets por técnico
+                await dr.NextResultAsync();
+
+                while(await dr.ReadAsync())
+                {
+                    dashboard.TicketsPorTecnico.Add(new DashboardTecnicoDto
+                    {
+                        Tecnico = dr["tecnico"].ToString()!,
+                        TotalTickets = Convert.ToInt32(dr["totalTickets"])
+                    });
+                }
+
+                // Tickets críticos
+                await dr.NextResultAsync();
+
+                while(await dr.ReadAsync())
+                {
+                    dashboard.TicketsCriticos.Add(new DashboardCriticoDto
+                    {
+                        NumeroTicket = dr["numeroTicket"].ToString()!,
+                        Asunto = dr["asunto"].ToString()!,
+                        Categoria = dr["categoria"].ToString()!,
+                        Tecnico = dr["tecnico"].ToString()!,
+                        Estado = dr["estado"].ToString()!,
+                        FechaCreacion = Convert.ToDateTime(dr["fechaCreacion"].ToString())!,
+                        TiempoPendiente = dr["tiempoPendiente"].ToString()!,
+                    });
+                }
+
+                // Resumen del día
+                await dr.NextResultAsync();
+
+                while(await dr.ReadAsync())
+                {
+                    dashboard.Indicadores = new DashboardResumenDto
+                    {
+                        TicketsCreadosHoy = Convert.ToInt32(dr["ticketsCreadosHoy"].ToString())!,
+                        TicketsSinAsignar = Convert.ToInt32(dr["ticketsSinAsignar"].ToString())!,
+                        TicketsCriticos = Convert.ToInt32(dr["ticketsCriticos"].ToString())!,
+                        TicketsCerradosHoy = Convert.ToInt32(dr["ticketsCerradosHoy"].ToString())!
+                    };
+                }
+
+                return dashboard;
             }
             catch (SqlException ex)
             {

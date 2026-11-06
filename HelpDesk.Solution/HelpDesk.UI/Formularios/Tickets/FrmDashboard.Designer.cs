@@ -1004,6 +1004,7 @@
             dgvListado.ReadOnly = true;
             dgvListado.Size = new Size(987, 299);
             dgvListado.TabIndex = 6;
+            dgvListado.CellFormatting += dgvListado_CellFormatting;
             // 
             // label4
             // 
@@ -1085,6 +1086,8 @@
             Controls.Add(panelContenido);
             Name = "FrmDashboard";
             Text = "FrmDashboard";
+            Load += FrmDashboard_Load;
+            Shown += FrmDashboard_Shown;
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconUser4).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconUser3).EndInit();
