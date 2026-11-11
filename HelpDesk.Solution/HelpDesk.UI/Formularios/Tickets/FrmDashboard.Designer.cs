@@ -992,6 +992,7 @@
             lblTodosTickets.Size = new Size(179, 21);
             lblTodosTickets.TabIndex = 7;
             lblTodosTickets.Text = "Ver todos los tickets ->";
+            lblTodosTickets.Click += lblTodosTickets_Click;
             // 
             // dgvListado
             // 

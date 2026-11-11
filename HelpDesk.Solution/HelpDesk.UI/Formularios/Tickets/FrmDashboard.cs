@@ -173,5 +173,10 @@ namespace HelpDesk.UI.Formularios.Tickets
             RedondearControlHelper.RedondearControl(panelCriticos, 20);
             RedondearControlHelper.RedondearControl(dgvListado, 12);
         }
+
+        private void lblTodosTickets_Click(object sender, EventArgs e)
+        {
+            Application.OpenForms.OfType<FrmPrincipal>().FirstOrDefault()?.AbrirTickets();
+        }
     }
 }

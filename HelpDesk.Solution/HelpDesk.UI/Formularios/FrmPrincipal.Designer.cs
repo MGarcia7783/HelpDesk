@@ -176,6 +176,7 @@
             btnTicket.TextAlign = ContentAlignment.MiddleRight;
             btnTicket.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnTicket.UseVisualStyleBackColor = true;
+            btnTicket.Click += btnTicket_Click;
             // 
             // btnCategoria
             // 
