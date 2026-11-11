@@ -64,6 +64,11 @@ namespace HelpDesk.UI.Formularios
             Close();
         }
 
+        public void AbrirTickets()
+        {
+            btnTicket.PerformClick();
+        }
+
         #endregion
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
@@ -81,6 +86,11 @@ namespace HelpDesk.UI.Formularios
         {
             SesionHelper.CargarDatosSesion(toolUsuario, toolRol);
             NavegacionHelper.AbrirFormulario(new FrmDashboard(), panelContenedor, ref formularioActivo, btnDashboard);
+        }
+
+        private void btnTicket_Click(object sender, EventArgs e)
+        {
+            NavegacionHelper.AbrirFormulario(new FrmTicketsListadoAdmin(), panelContenedor, ref formularioActivo, btnTicket);
         }
     }
 }

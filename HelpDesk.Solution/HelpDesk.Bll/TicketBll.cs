@@ -26,6 +26,21 @@ namespace HelpDesk.Bll
             return await _ticketDal.AgregarAsync(ticket, usuarioApp);
         }
 
+        public async Task<TicketEntity?> ObtenerPorIdAsync(int id)
+        {
+            return await _ticketDal.ObtenerPorIdAsync(id);
+        }
+
+        public async Task<List<UsuarioEntity>> ObtenerTecnicosAsync()
+        {
+            return await _ticketDal.ObtenerTecnicosActivosAsync();
+        }
+
+        public async Task GestionarAsync(int idTicket, int? idTecnicoAsignado, string estado, string usuarioApp)
+        {
+            await _ticketDal.GestionarAsync(idTicket, idTecnicoAsignado, estado, usuarioApp);
+        }
+
         public async Task<DashboardAdminDto> ObtenerDashboardAdminAsync()
         {
             return await _ticketDal.ObtenerDashboardAdminAsync();

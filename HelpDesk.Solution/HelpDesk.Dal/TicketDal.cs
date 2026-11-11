@@ -97,6 +97,129 @@ namespace HelpDesk.Dal
             }
         }
 
+        /// <summary>
+        /// Obtiene un registro por Id
+        /// </summary>
+        public async Task<TicketEntity?> ObtenerPorIdAsync(int id)
+        {
+            try
+            {
+                using SqlConnection cn = Conexion.ObtenerConexion();
+
+                using SqlCommand cmd = new("sp_ObtenerTicketPorId", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@id", id);
+                await cn.OpenAsync();
+
+                using SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                if (!await dr.ReadAsync())
+                    return null;
+
+                TicketEntity ticket = new();
+
+                ticket.AsignarId(Convert.ToInt32(dr["idTicket"]));
+                ticket.CambiarNumeroTicket(dr["numeroTicket"].ToString()!);
+
+                ticket.CambiarFechaCreacion(
+                    Convert.ToDateTime(dr["fechaCreacion"]));
+
+                if (dr["fechaUltimaActualizacion"] != DBNull.Value)
+                    ticket.CambiarFechaUltimaActualizacion(Convert.ToDateTime(dr["fechaUltimaActualizacion"]));
+
+                ticket.CambiarAsunto(dr["asunto"].ToString()!);
+                ticket.CambiarDescripcion(dr["descripcion"].ToString()!);
+                ticket.CambiarUsuarioSolicitante(Convert.ToInt32(dr["idUsuarioSolicitante"]));
+                ticket.CambiarNombreSolicitante(dr["nombreSolicitante"].ToString()!);
+                ticket.CambiarCategoria(Convert.ToInt32(dr["idCategoria"]));
+                ticket.CambiarNombreCategoria(dr["nombreCategoria"].ToString()!);
+                ticket.CambiarCategoria(Convert.ToInt32(dr["idCategoria"]));
+
+                if (dr["idTecnicoAsignado"] != DBNull.Value)
+                    ticket.CambiarTecnicoAsignado(Convert.ToInt32(dr["idTecnicoAsignado"]));
+
+                if (dr["nombreTecnico"] != DBNull.Value)
+                    ticket.CambiarNombreTecnico(dr["nombreTecnico"].ToString()!);
+
+                ticket.CambiarPrioridad(dr["prioridad"].ToString()!);
+                ticket.CambiarEstado(dr["estado"].ToString()!);
+
+                if (dr["fechaCierre"] != DBNull.Value)
+                    ticket.CambiarFechaCierre(Convert.ToDateTime(dr["fechaCierre"]));
+
+                return ticket;
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorHelper.TraducirError(ex);
+            }
+        }
+
+
+        /// <summary>
+        /// Obtener técnicos activos
+        /// </summary>
+        public async Task<List<UsuarioEntity>> ObtenerTecnicosActivosAsync()
+        {
+            try
+            {
+                List<UsuarioEntity> lista = [];
+
+                using SqlConnection cn = Conexion.ObtenerConexion();
+                using SqlCommand cmd = new("sp_MostrarTecnicosActivos", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                await cn.OpenAsync();
+
+                using SqlDataReader dr = await cmd.ExecuteReaderAsync();
+
+                while (await dr.ReadAsync())
+                {
+                    UsuarioEntity usuario = new();
+
+                    usuario.AsignarId(Convert.ToInt32(dr["Id"]));
+                    usuario.CambiarNombreCompleto(dr["nombreCompleto"].ToString()!);
+
+                    lista.Add(usuario);
+                }
+
+                return lista;
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorHelper.TraducirError(ex);
+            }
+        }
+
+
+        /// <summary>
+        /// Gestionar un ticket (Asignar técnico y cambiar estado)
+        /// </summary>
+        public async Task GestionarAsync(int idTicket, int? idTecnicoAsignado, string estado, string usuarioApp)
+        {
+            try
+            {
+                using SqlConnection cn = Conexion.ObtenerConexion();
+                using SqlCommand cmd = new("sp_GestionarTicket", cn);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@id", idTicket);
+                cmd.Parameters.AddWithValue("@idTecnicoAsignado", idTecnicoAsignado.HasValue
+                    ? idTecnicoAsignado.Value
+                    : DBNull.Value);
+                cmd.Parameters.AddWithValue("@estado", estado);
+                cmd.Parameters.AddWithValue("@usuarioApp", usuarioApp);
+
+                await cn.OpenAsync();
+                await cmd.ExecuteNonQueryAsync();
+            }
+            catch (SqlException ex)
+            {
+                throw SqlErrorHelper.TraducirError(ex);
+            }
+        }
+
         public async Task<DashboardAdminDto> ObtenerDashboardAdminAsync()
         {
             try

@@ -1,4 +1,5 @@
 ﻿
+using FontAwesome.Sharp;
 using HelpDesk.UI.Helpers;
 using System.Xml.Serialization;
 
@@ -108,6 +109,81 @@ namespace HelpDesk.UI.Formularios.Base
         #endregion
 
         #region Personalizar el formulario
+
+        /// <summary>
+        /// Cambiar el texto del botón Agregar.
+        /// </summary>
+        protected string TextoBotonPrincipal
+        {
+            get => buttonAgregar.Text;
+            set => buttonAgregar.Text = value;
+        }
+
+        protected IconChar IconoBotonPrincipal
+        {
+            get => buttonAgregar.IconChar;
+            set => buttonAgregar.IconChar = value;
+        }
+
+        protected Color ColorIconoBotonPrincipal
+        {
+            get => buttonAgregar.IconColor;
+            set => buttonAgregar.IconColor = value;
+        }
+
+
+        /// <summary>
+        /// Cambiar el texto del botón Editar.
+        /// </summary>
+        protected string TextoBotonSecundario
+        {
+            get => buttonEditar.Text;
+            set => buttonEditar.Text = value;
+        }
+
+        protected IconChar IconoBotonSecundario
+        {
+            get => buttonEditar.IconChar;
+            set => buttonEditar.IconChar = value;
+        }
+
+        protected Color ColorIconoBotonSecundario
+        {
+            get => buttonEditar.IconColor;
+            set => buttonEditar.IconColor = value;
+        }
+
+
+        /// <summary>
+        /// Cambiar el texto del botón Desactivar.
+        /// </summary>
+        protected string TextoBotonTerciario
+        {
+            get => buttonDesactivar.Text;
+            set => buttonDesactivar.Text = value;
+        }
+
+        protected IconChar IconoBotonTerciario
+        {
+            get => buttonDesactivar.IconChar;
+            set => buttonDesactivar.IconChar = value;
+        }
+
+        protected Color ColorIconoBotonTerciario
+        {
+            get => buttonDesactivar.IconColor;
+            set => buttonDesactivar.IconColor = value;
+        }
+
+
+        /// <summary>
+        /// Cambiar la imagen del icono principal.
+        /// </summary>
+        protected IconChar IconoTitulo
+        {
+            get => iconTitulo.IconChar;
+            set => iconTitulo.IconChar = value;
+        }
 
         protected void MostrarEstadoVacio(bool tieneDatos)
         {
